@@ -5,6 +5,7 @@ import useAdmin from '../hooks/useAdmin'
 
 export default function Dashboard() {
     const [isAdmin] = useAdmin();
+    // const isAdmin = true;
 
     return (
         <div className='flex'>

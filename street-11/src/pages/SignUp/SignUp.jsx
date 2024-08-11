@@ -37,7 +37,7 @@ export default function SignUp() {
                         text: 'Do you want to continue',
                         icon: 'success',
                         confirmButtonText: 'yes',
-                        timer: 1500
+                        timer: 1000
 
                     })
                     navigate('/')
@@ -102,8 +102,8 @@ export default function SignUp() {
                             </div>
                             <p className='text-center text-orange-400'><small className='mr-1'>Already User?
                             </small><Link to="/login"><small>Login to your account</small></Link></p>
-                            <div class="flex w-full flex-col">
-                                <div class="divider">Or</div>
+                            <div className="flex w-full flex-col">
+                                <div className="divider">Or</div>
                             </div>
                             <GmailSignUp />
                         </form>

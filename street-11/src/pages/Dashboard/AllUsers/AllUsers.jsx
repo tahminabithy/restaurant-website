@@ -9,7 +9,11 @@ export default function AllUsers() {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users',);
+            const res = await axiosSecure.get('/users', {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('access_token')}`
+                }
+            });
             console.log("user value for authorized", res.data);
             return res.data;
         }
