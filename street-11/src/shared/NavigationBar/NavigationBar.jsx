@@ -1,6 +1,34 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { authProvider } from "../../Context/AuthContext";
+import { FaCartShopping } from "react-icons/fa6";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useCarts } from "../../hooks/UseCarts";
 
 const NavigationBar = () => {
+  const [carts] = useCarts([])
+  const axiosSecure = useAxiosSecure();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logOut } = useContext(authProvider);
+  const handleLogout = () => {
+    logOut().then(() => {
+      // Sign-out successful.
+      console.log("Sign-out successful.");
+      navigate('/login')
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
+  // useEffect(() => {
+  //   axiosSecure.get('/carts').then((response) => {
+  //     console.log(response.data);
+  //     setCarts(response.data)
+  //   }).catch((error) => {
+  //     console.log(error);
+
+  //   }, [])
+  // })
   const navOptions = (
     <>
       {" "}
@@ -20,8 +48,29 @@ const NavigationBar = () => {
         <Link to="/order">OUR SHOP</Link>
       </li>
       <li>
-        <Link>SIGN OUT</Link>
+        <Link to="/dashboard/cart"><button className="flex justify-center items-center" >
+          <FaCartShopping className="mr-1"></FaCartShopping>
+          <div className="badge badge-secondary">+{carts.length}</div>
+        </button></Link>
       </li>
+
+      {/* <button className="">
+        <div className="mt-3"> <FaCartShopping /></div>
+
+
+        <span className="badge badge-secondary">+99</span>
+      </button> */}
+      {/* <li>
+        <Link to="/protectedRoute">secret</Link>
+      </li> */}
+      {
+        user ? <li>
+          <button onClick={handleLogout}>Log Out</button>
+        </li> : <li>
+          <Link to="/login">Login</Link>
+        </li>
+      }
+
     </>
   );
   return (

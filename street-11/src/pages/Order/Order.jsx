@@ -56,7 +56,7 @@ const Order = () => {
       {/* ------------------ */}
 
       {order === "salad" ? (
-        <div className="grid col-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-col-1 md:grid-cols-3 gap-8">
           {salads?.slice(0, 6).map((item) => (
             <FoodCard key={item._id} item={item} />
           ))}

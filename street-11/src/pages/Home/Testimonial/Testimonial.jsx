@@ -14,7 +14,7 @@ import "@smastrom/react-rating/style.css";
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/review")
+    fetch("http://localhost:3001/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
@@ -27,8 +27,8 @@ const Testimonial = () => {
         modules={[Navigation]}
         className="mySwiper my-16"
       >
-        {reviews.map((review) => (
-          <SwiperSlide key={review.id}>
+        {reviews.map((review, index) => (
+          <SwiperSlide key={index}>
             <div className="flex flex-col items-center mx-24">
               {" "}
               <Rating

@@ -3,7 +3,7 @@ import SecTitle from "../../../components/SecTitle/SecTitle";
 
 const ChefRecommends = () => {
   return (
-    <div className="mb-12">
+    <div className="p-8  mb-12">
       <SecTitle heading={"Should Try"} subHeading={"CHEF RECOMMENDS"} />
       {/* ------------------- */}
 
