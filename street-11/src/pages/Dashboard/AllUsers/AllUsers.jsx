@@ -9,11 +9,7 @@ export default function AllUsers() {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users', {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('access_token')}`
-                }
-            });
+            const res = await axiosSecure.get('/users',);
             console.log("user value for authorized", res.data);
             return res.data;
         }
@@ -164,3 +160,8 @@ export default function AllUsers() {
 }
 
 
+// {
+//     headers: {
+//         authorization: `Bearer ${localStorage.getItem('access_token')}`
+//     }
+// }

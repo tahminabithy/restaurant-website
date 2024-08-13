@@ -19,7 +19,7 @@ export default function Dashboard() {
                                 <FaHouse />Admin Home</NavLink>
                         </li>
                             <li className='px-4 pb-4'>
-                                <NavLink to='/addItems' >
+                                <NavLink to='/dashboard/addItems' >
                                     <FaUtensils />Add Items</NavLink>
                             </li>
                             <li className='px-4 pb-4'>
