@@ -36,18 +36,29 @@ async function run() {
       console.log('amr verfity token  ', req.headers);
       
       if(!req.headers){
-       return res.status(402).send({message:'unauthorized'})
+       return res.status(401).send({message:'unauthorized'})
       }
        const token = req?.headers?.authorization?.split(' ')[1];
         jwt.verify(token,process.env.SECRET_ACCESS_TOKEN, function ( err, decoded) {
           if(err){
-            return res.status(402).send({message:'unauthorized'})
+            return res.status(401).send({message:'unauthorized'})
           }
           console.log('decoded value ', decoded);
          req.decoded = decoded;
          next();
         
         });
+      }
+      // middle wire for verfying admin -----------
+      const verifyAdmin = async(req,res,next)=>{
+        const email = req.decoded.data.email
+        const query = {email:email}
+        const user = await users.findOne(query);
+        const isAdmin = user?.role === 'admin' ? true : false
+        if(!isAdmin){
+          return res.status(403).send({message:'forbidden access'})
+        }
+        next();
       }
     // -------------jwt token ---------------
     app.post('/jwt',async(req,res)=>{
@@ -60,11 +71,11 @@ async function run() {
       res.send({token:token})
       
     })
-    // verifying user is admin or not 
+    //  admin or not 
     app.get('/users/admin/:email',verifyToken,async(req,res)=>{
       const email = req.params.email 
       if(email !== req.decoded.data.email){
-        return res.status(402).send({message:'unauthorized'})
+        return res.status(403).send({message:'forbidden access'})
       }
       const query = {email:email}
       const user = await users.findOne(query)
@@ -74,20 +85,10 @@ async function run() {
       }
       res.send({isAdmin})
     })
-    app.get("/menu",async(req,res)=>{
-        const allMenu = await menu.find().toArray();
-        res.send(allMenu);
-    })
-    app.get('/reviews',async(req,res)=>{
-        const allReviews = await reviews.find().toArray();
-        res.send(allReviews)
-    })
-    app.post('/carts',async(req,res)=>{
-        const cartInfo = req.body;
-        const newCart = await carts.insertOne(cartInfo);
-        res.send(newCart)
-        
-    })
+   
+
+  // ------------------users---------------
+
     app.post('/users',async(req,res)=>{
         const userInfo = req.body;    
         const query = {email : userInfo.email}
@@ -99,7 +100,7 @@ async function run() {
         res.send(newUser)
         
     })
-    app.get('/users',verifyToken,async (req,res)=>{
+    app.get('/users',verifyToken,verifyAdmin, async (req,res)=>{
       // console.log('token calue ', req.headers.authorization);
       
       const allUsers = await users.find().toArray();
@@ -123,6 +124,23 @@ async function run() {
     const result = await users.updateOne(filter,updateDoc)
     res.send(result)
     })
+    // -----------------menu----------------
+    app.get("/menu",async(req,res)=>{
+      const allMenu = await menu.find().toArray();
+      res.send(allMenu);
+  })
+  app.post('/menu',verifyToken,verifyAdmin,async(req,res)=>{
+    const menuItem = req.body;
+    const result = await menu.insertOne(menuItem);
+    res.send(result)
+  })
+    // ---------cart -------------
+    app.post('/carts',async(req,res)=>{
+      const cartInfo = req.body;
+      const newCart = await carts.insertOne(cartInfo);
+      res.send(newCart)
+      
+  })
     app.get('/carts',async(req,res)=>{
      
         const email = req.query.email
@@ -138,6 +156,11 @@ async function run() {
       
         res.send(result)
    })
+  //  -----------------reviews----------------
+  app.get('/reviews',async(req,res)=>{
+    const allReviews = await reviews.find().toArray();
+    res.send(allReviews)
+})
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
