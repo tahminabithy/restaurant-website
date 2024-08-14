@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useMenu from '../../../hooks/useMenu';
 import { FaPenToSquare, FaTrashCan } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 function ManageItems() {
     const [menu, , refetch] = useMenu();
@@ -79,7 +80,9 @@ function ManageItems() {
                                     </td>
                                     <td>{eachItem.price}</td>
                                     <th>
-                                        <button className="btn btn bg-orange-300 btn-xs text-white btn-md"><FaPenToSquare /></button>
+                                        <Link to={`/dashboard/updateItems/${eachItem._id}`}>
+                                            <button className="btn btn bg-orange-300 btn-xs text-white btn-md"><FaPenToSquare /></button>
+                                        </Link>
                                     </th>
                                     <th>
                                         <button onClick={() => handleDeleteItem(eachItem._id)} className="btn btn bg-red-600 btn-xs text-white btn-md"><FaTrashCan /></button>
