@@ -11,7 +11,7 @@ const hostingApi = `https://api.imgbb.com/1/upload?key=${apiKey}`
 export default function AddItems() {
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, reset } = useForm()
     const onSubmit = async (data) => {
         console.log(data);
         const imgFile = { image: data.image[0] }
@@ -25,7 +25,7 @@ export default function AddItems() {
             const item = {
                 name: data.name,
                 category: data.category,
-                price: data.price,
+                price: parseFloat(data.price),
                 recipe: data.recipe,
                 image: res.data.data.display_url
             }
@@ -33,6 +33,7 @@ export default function AddItems() {
                 console.log(res.data);
                 {
                     if (res.data.insertedId) {
+                        reset()
                         Swal.fire({
                             position: "top-end",
                             icon: "success",

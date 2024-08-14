@@ -23,11 +23,11 @@ export default function Dashboard() {
                                     <FaUtensils />Add Items</NavLink>
                             </li>
                             <li className='px-4 pb-4'>
-                                <NavLink to='/manageItems' >
+                                <NavLink to='/dashboard/manageItems' >
                                     <FaList />Manage Items</NavLink>
                             </li>
                             <li className='px-4 pb-4'>
-                                <NavLink to='/manageItems' >
+                                <NavLink to='/dashboard/manageBookings' >
                                     <FaBook />Manage Bookings</NavLink>
                             </li>
                             <li className='px-4 pb-4'>
