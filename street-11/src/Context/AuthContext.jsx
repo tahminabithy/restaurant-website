@@ -19,19 +19,21 @@ function AuthContext({ children }) {
             console.log("currentuser", user);
 
             const userInfo = {
-                email: user.email
+                email: user?.email
             }
             if (user) {
                 axiosPublic.post('/jwt', userInfo).then(res => {
                     if (res.data.token) {
-                        localStorage.setItem('access_token', res.data.token)
+                        localStorage.setItem('access_token', res.data?.token)
                     }
+                    setloading(false)
                 })
             }
             else {
                 localStorage.removeItem('access_token')
+                setloading(false)
             }
-            setloading(false)
+
         })
         return unsub
     }, [axiosPublic])

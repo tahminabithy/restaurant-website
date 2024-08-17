@@ -10,6 +10,7 @@ const Main = () => {
         <div>
             {
                 !isLogin ? <NavigationBar /> : null
+
             }
             <Outlet />
             <Footer />

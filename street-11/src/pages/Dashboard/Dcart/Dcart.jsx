@@ -1,8 +1,9 @@
 import React from 'react'
 import { useCarts } from '../../../hooks/UseCarts'
-import { FaBinoculars, FaCircleXmark, FaCopy, FaCross, FaDeleteLeft, FaPenClip, FaTrashCan } from 'react-icons/fa6';
+import { FaBinoculars, FaCircleXmark, FaCopy, FaCross, FaDeleteLeft, FaMoneyBill, FaPenClip, FaTrashCan } from 'react-icons/fa6';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 export default function Dcart() {
     const axiosSecure = useAxiosSecure();
@@ -43,8 +44,16 @@ export default function Dcart() {
                         <h3 className='text-center mb-6 text-3xl mt-4'>Manage All Items</h3>
                     </div>
                 </div>
+
                 <div className="overflow-x-auto mt-10 shadow-2xl p-10">
-                    <h1 className='mb-4 font-bold'>TOTAL ITEMS: {carts.length}</h1>
+                    <div className='flex justify-between'>
+                        <h1 className='mb-4 font-bold'>TOTAL ITEMS: {carts.length}</h1>
+                        <Link to="/dashboard/payment">
+                            <button className="btn border-b-4 border-[#BB8506] bg-orange-300  hover:border-[#BB8506] mb-6"><FaMoneyBill />Pay</button>
+                        </Link>
+
+                    </div>
+
                     <table className="table">
                         {/* head */}
                         <thead className='bg-orange-300'>

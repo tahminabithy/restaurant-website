@@ -98,7 +98,8 @@ export default function Login() {
                             <div className="form-control  mt-6">
                                 <button disabled={disable} className="btn bg-orange-300 text-white">Sign In</button>
                             </div>
-                            <p className='text-center text-orange-400'><small className='mr-1'>New here?</small><Link to="/signup"><small>create a new account</small></Link></p>
+                            <p className='text-center text-orange-400'><small className='mr-1'>New here?</small>
+                                <Link to="/signUp"><small>create a new account</small></Link></p>
                             <div className="flex w-full flex-col">
                                 <div className="divider">Or</div>
                             </div>

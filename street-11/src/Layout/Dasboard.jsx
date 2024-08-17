@@ -36,23 +36,23 @@ export default function Dashboard() {
                             </li>
                         </> : <>
                             <li className='px-4 py-4'>
-                                <NavLink to='/cart' >
+                                <NavLink to='dashboard/userHome' >
                                     <FaHouse />User Home</NavLink>
                             </li>
                             <li className='px-4 pb-4'>
-                                <NavLink to='/reservation' >
+                                <NavLink to='/dashboard/reservation' >
                                     <FaNoteSticky />Reservation</NavLink>
                             </li>
                             <li className='px-4 pb-4'>
-                                <NavLink to='/reservation' >
+                                <NavLink to='/dashboard/payment' >
                                     <FaMoneyBill />Payment History</NavLink>
                             </li>
                             <li className='px-4 pb-4'>
-                                <NavLink to='/reservation' >
+                                <NavLink to='/dashboard/cart' >
                                     <FaBasketShopping />My Cart</NavLink>
                             </li>
                             <li className='px-4'>
-                                <NavLink to='/reservation' >
+                                <NavLink to='dashboard/addReview' >
                                     <FaStarOfLife />Add review</NavLink>
                             </li>
                         </>

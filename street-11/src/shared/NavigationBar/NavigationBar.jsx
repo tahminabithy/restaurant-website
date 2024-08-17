@@ -4,6 +4,7 @@ import { authProvider } from "../../Context/AuthContext";
 import { FaCartShopping } from "react-icons/fa6";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useCarts } from "../../hooks/UseCarts";
+import useAdmin from "../../hooks/useAdmin";
 
 const NavigationBar = () => {
   const [carts] = useCarts([])
@@ -11,6 +12,7 @@ const NavigationBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logOut } = useContext(authProvider);
+  const [isAdmin] = useAdmin();
   const handleLogout = () => {
     logOut().then(() => {
       // Sign-out successful.
@@ -38,9 +40,23 @@ const NavigationBar = () => {
       <li>
         <Link>CONTACT US</Link>
       </li>
-      <li to="">
-        <Link>DASHBOARD</Link>
-      </li>
+      {/* {
+        user && !isAdmin && <li >
+          <Link to="/dashboard/userHome">DASHBOARD</Link>
+        </li>
+      }
+      {
+        user && isAdmin && <li >
+          <Link to="/dashboard/adminHome">DASHBOARD</Link>
+        </li>
+      } */}
+      {
+        user ? isAdmin ? <li >
+          <Link to="/dashboard/adminHome">DASHBOARD</Link>
+        </li> : <li >
+          <Link to="/dashboard/userHome">DASHBOARD</Link>
+        </li> : ""
+      }
       <li>
         <Link to="/ourMenu">OUR MENU</Link>
       </li>
