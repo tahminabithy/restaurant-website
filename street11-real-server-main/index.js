@@ -178,12 +178,24 @@ async function run() {
        
     })
     app.delete('/cart/:id', async(req,res)=>{
-        const id = req.params.id
-        const query = {_id: new ObjectId(id)}
-        const result = await carts.deleteOne(query)
+      const id = req.params.id
+      const query = {_id: new ObjectId(id)}
+      const result = await carts.deleteOne(query)
+    
+      res.send(result)
+ })
+    // -----------------statistic----------------
+    app.get('/admin-stats', async (req, res) => {
+  const allUsers = await users.estimatedDocumentCount();
+  const allMenu = await menu.estimatedDocumentCount();
+  const allOrders = await carts.estimatedDocumentCount();
+  console.log('all users ', allUsers),allMenu ;
+  
+  res.send({allUsers , allMenu , allOrders})
       
-        res.send(result)
-   })
+    })
+
+   
   //  -----------------reviews----------------
   app.get('/reviews',async(req,res)=>{
     const allReviews = await reviews.find().toArray();
