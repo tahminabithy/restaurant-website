@@ -14,7 +14,7 @@ import "@smastrom/react-rating/style.css";
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3002/reviews")
+    fetch("https://street11-real-server-main.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

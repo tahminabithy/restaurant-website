@@ -37,7 +37,6 @@ export default function AllUsers() {
                             timer: 1000
                         });
                     }
-
                 })
 
             }

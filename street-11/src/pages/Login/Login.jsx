@@ -17,12 +17,12 @@ export default function Login() {
         email: '',
         password: ''
     })
-    function onChange(value) {
-        console.log("Captcha value:", value);
-        if (value) {
-            setDisable(false);
-        }
-    }
+    // function onChange(value) {
+    //     console.log("Captcha value:", value);
+    //     if (value) {
+    //         setDisable(false);
+    //     }
+    // }
     // ------------------
     const handleChangeForm = (e) => {
         const name = e.target.name;
@@ -76,10 +76,10 @@ export default function Login() {
                                 <input name='password' value={formData.password} onChange={(e) => handleChangeForm(e)} type="password" placeholder="password" className="input input-bordered" required />
 
                             </div>
-                            <div className="form-control mt-4">
-                                {/* <input type="text" placeholder="uiga" className="input input-bordered" required /> */}
+                            {/* <div className="form-control mt-4">
+                             
                                 <ReCAPTCHA
-                                    sitekey="6Lda1hwqAAAAACSKtgX3yhQRMw3fgWQHwB84FcYK"
+                                    sitekey="6Lf4iEcqAAAAAEjcjMskjh0HvfCZceYNodxiN4I3"
                                     onChange={onChange}
                                 />
 
@@ -87,7 +87,7 @@ export default function Login() {
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Reload Captcha</a>
                                 </label>
-                            </div>
+                            </div> */}
                             {/* {
                                 disable ? <div className="form-control  mt-6">
                                     <button disabled className=" btn bg-orange-300 text-white">Sign In</button>

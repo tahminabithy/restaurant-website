@@ -1,7 +1,6 @@
 import React from "react";
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";
-import BistroBoss from "../BistroBoss/BistroBoss";
 import PopularMenu from "../PopularMenu/PopularMenu";
 import ChefRecommends from "../ChefRecommends/ChefRecommends";
 import Featured from "../Featured/Featured";

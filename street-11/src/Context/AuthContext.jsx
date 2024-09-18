@@ -25,8 +25,9 @@ function AuthContext({ children }) {
                 axiosPublic.post('/jwt', userInfo).then(res => {
                     if (res.data.token) {
                         localStorage.setItem('access_token', res.data?.token)
+                        setloading(false)
                     }
-                    setloading(false)
+
                 })
             }
             else {

@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
       {
         path: 'updateItems/:id',
         element: <AdminRoutes><UpdateItems /></AdminRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:3002/menu/${params.id}`)
+        loader: ({ params }) => fetch(`https://street11-real-server-main.vercel.app/menu/${params.id}`)
       }
     ],
   }

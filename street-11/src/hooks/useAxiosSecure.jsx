@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { authProvider } from '../Context/AuthContext';
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:3002",
+    baseURL: "https://street11-real-server-main.vercel.app",
 })
 export default function useAxiosSecure() {
 
@@ -17,8 +17,6 @@ export default function useAxiosSecure() {
     }, function (error) {
         return Promise.reject(error);
     });
-
-
 
     axiosSecure.interceptors.response.use(function (response) {
         return response;
